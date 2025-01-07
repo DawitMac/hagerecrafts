@@ -4,20 +4,23 @@ import { MdAddShoppingCart } from 'react-icons/md'
 import Link from 'next/link'
 import { ReactNode } from 'react'
 import Image from 'next/image'
-import { useGlobalContext } from '../context/ContextProvider'
+import hagere from '../../public/Hagere.png'
+import { useSelector } from 'react-redux';
 
 
 const NavBar = () => {
-    const { cartValue } = useGlobalContext();
+
+  const cartValue = useSelector((state: any) => state.cart.cartValue)
+  console.log(cartValue , "cartValue")
     
   return (
     <div className='fixed z-50 w-screen bg-white'>
     <div className='flex items-center justify-between my-1 md:my-4 px-2 sm:px-8 md:px-20'>
-        <Link href='/' ><span className='flex items-center justify-center gap-2'><Image src="/Hagere.png" alt='logo' width={50} height={50} className='cursor-pointer w-12 h-12' /><p className='text-gray-900 text-xl font-serif font-normal'>HagereCrafts</p></span></Link>
+        <Link href='/' ><span className='flex items-center justify-center gap-2'><Image src={hagere} alt='logo' placeholder='blur' width={50} height={50} className='cursor-pointer w-12 h-12' /><p className='text-gray-900 text-xl font-serif font-normal'>HagereCrafts</p></span></Link>
         <DrawOutlineButton>
          <Link href='/cart'  className='flex p-2 shadow rounded relative bg-white'>
           <MdAddShoppingCart size={23} />
-          {cartValue > 0 &&<span className="absolute right-0 top-0 rounded-full bg-red-500 w-4 h-4 top right p-0 m-0 text-white font-mono text-sm  leading-tight text-center">{cartValue}</span>}
+          { cartValue > 0 &&<span className="absolute right-0 top-0 rounded-full bg-red-500 w-4 h-4 top right p-0 m-0 text-white font-mono text-sm  leading-tight text-center">{cartValue}</span>}
         </Link>
         </DrawOutlineButton>
     </div>

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavBar from "./components/Navbar";
-import ContextProvider from "./context/ContextProvider"
+import StoreProvider from "./StoreProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,18 +24,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
-      <head>
-      <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased max-w-[100vw] overflow-x-hidden`}
       >
-        <ContextProvider>
+        <StoreProvider>
           <NavBar />
           {children}
-        </ContextProvider>
+        </StoreProvider>
         
       </body>
     </html>
