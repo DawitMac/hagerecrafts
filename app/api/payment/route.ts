@@ -25,7 +25,6 @@ async function handler(req: NextRequest) {
         console.error('Reader is undefined');
     }
 
-    const CHAPA_URL = process.env.CHAPA_URL;
     const chapa_key = process.env.CHAPA_KEY;
     const tx_ref = `negade-tx-12345678sss9${Date.now()}`;
     const NEXTAUTH_URL = process.env.NEXTAUTH_URL;
@@ -50,7 +49,7 @@ async function handler(req: NextRequest) {
     };
 
     try {
-        const { data } = await axios.post(CHAPA_URL, info, config);
+        const { data } = await axios.post("https://api.chapa.co/v1/transaction/initialize", info, config);
         console.log(data, "yes it worked");
         return NextResponse.json(data.data.checkout_url);
     } catch (error) {
