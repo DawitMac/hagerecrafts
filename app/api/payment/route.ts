@@ -27,7 +27,7 @@ async function handler(req: NextRequest) {
 
     const chapa_key = process.env.CHAPA_KEY;
     const tx_ref = `negade-tx-12345678sss9${Date.now()}`;
-    const NEXTAUTH_URL = process.env.NEXTAUTH_URL;
+    // const NEXTAUTH_URL = process.env.NEXTAUTH_URL;
 
     const info = {
         amount: decodedValue?.amount,
