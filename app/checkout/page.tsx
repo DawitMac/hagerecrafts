@@ -3,6 +3,7 @@ import React, { useActionState, useState } from 'react'
 import { checkout } from '../utils/action'
 import { Product } from '../lib/types'
 import { useSelector } from 'react-redux'
+import { CartItem } from '../lib/features/cart/cartSlice'
 
 type Info = {
     amount: number,
@@ -11,9 +12,16 @@ type Info = {
     last_name: string,
 }
 
+export interface RootState {
+  cart: {
+    cartItems: CartItem[];
+    cartValue: number;
+  };
+}
 
-const page = () => {
-  const cartItem = useSelector((state:any)=>state.cart.cartItems)
+
+const Page = () => {
+  const cartItem = useSelector((state:RootState)=>state.cart.cartItems)
   const price = cartItem.reduce((acc: number , item : Product)=> acc + item.price ,0)
 
     const [info , setInfo ] = useState<Info>({
@@ -79,4 +87,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

@@ -6,11 +6,18 @@ import { ReactNode } from 'react'
 import Image from 'next/image'
 import hagere from '../../public/Hagere.png'
 import { useSelector } from 'react-redux';
+import { CartItem } from '../lib/features/cart/cartSlice';
 
+export interface RootState {
+  cart: {
+    cartItems: CartItem[];
+    cartValue: number;
+  };
+}
 
 const NavBar = () => {
 
-  const cartValue = useSelector((state: any) => state.cart.cartValue)
+  const cartValue = useSelector((state: RootState) => state.cart.cartValue)
   console.log(cartValue , "cartValue")
     
   return (
