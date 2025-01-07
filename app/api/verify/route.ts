@@ -1,13 +1,12 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 
-async function handler(req: NextRequest) {
-    const { params } = req;
-    const reader = params?.getReader();
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+    const reader = req.body?.getReader();
 
     if (!reader) {
         console.error('Reader is undefined');
-        return NextResponse.json({ message: 'Error: Request body reader is undefined' });
+        return res.status(400).json({ message: 'Error: Request body reader is undefined' });
     }
 
     const decoder = new TextDecoder();
@@ -24,7 +23,7 @@ async function handler(req: NextRequest) {
         }
     } catch (error) {
         console.error('Error reading the request body:', error);
-        return NextResponse.json({ message: 'Error reading request body', error });
+        return res.status(500).json({ message: 'Error reading request body', error });
     }
 
     const chapa_key = process.env.CHAPA_KEY;
@@ -35,13 +34,11 @@ async function handler(req: NextRequest) {
     };
 
     try {
-        const { data } = await axios.get(`https://api.chapa.co/v1/transaction/verify/${decodedValue.id}`, config);
+        const { data } = await axios.get(`https://api.chapa.co/v1/transaction/verify/${decodedValue?.id}`, config);
         console.log(data, "yes it worked");
-        return NextResponse.json({ message: 'Payment verified' });
+        return res.status(200).json({ message: 'Payment verified' });
     } catch (error) {
         console.error('Error while verifying payment:', error);
-        return NextResponse.json({ message: 'Error happened while verifying', error });
+        return res.status(500).json({ message: 'Error happened while verifying', error });
     }
-}
-
-export { handler as POST };
+};
