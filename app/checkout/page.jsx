@@ -5,26 +5,35 @@ import { Product } from '../lib/types'
 import { useSelector } from 'react-redux'
 import { CartItem } from '../lib/features/cart/cartSlice'
 
-type Info = {
-    amount: number,
-    email: string,
-    first_name: string,
-    last_name: string,
-}
+// type Info = {
+//     amount: number,
+//     email: string,
+//     first_name: string,
+//     last_name: string,
+// }
 
-export interface RootState {
-  cart: {
-    cartItems: CartItem[];
-    cartValue: number;
-  };
-}
+// export interface RootState {
+//   cart: {
+//     cartItems: CartItem[];
+//     cartValue: number;
+//   };
+//}
+
+// interface ErrorMessage {
+//   errors: {
+//       email?: string;
+//       first_name?: string;
+//       last_name?:string;
+//   };
+// }
+
 
 
 const Page = () => {
-  const cartItem = useSelector((state:RootState)=>state.cart.cartItems)
-  const price = cartItem.reduce((acc: number , item : Product)=> acc + item.price ,0)
+  const cartItem = useSelector((state)=>state.cart.cartItems)
+  const price = cartItem.reduce((acc , item )=> acc + item.price ,0)
 
-    const [info , setInfo ] = useState<Info>({
+    const [info , setInfo ] = useState({
         amount: 0,
         email: '',
         first_name: '',
@@ -34,6 +43,7 @@ const Page = () => {
     
     const input_style = 'w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md'
     const [ errorMessage , action  ] = useActionState(checkout, undefined)
+    
   return (
     <div className='flex items-center justify-center max-w-md mx-auto pt-20 h-full '>
     <form action={action} className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4' >
