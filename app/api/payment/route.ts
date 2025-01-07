@@ -36,8 +36,8 @@ async function handler(req: NextRequest) {
         first_name: decodedValue.first_name,
         last_name: decodedValue.last_name,
         tx_ref: tx_ref,
-        callback_url: `${NEXTAUTH_URL}/api/verify/` + tx_ref,
-        return_url: `${NEXTAUTH_URL}/checkout/sucess`
+        callback_url: `https://hagerecrafts-cnzi.vercel.app/api/verify/` + tx_ref,
+        return_url: `https://hagerecrafts-cnzi.vercel.app/checkout/sucess`
     };
     
     console.log(info, "info");
