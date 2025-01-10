@@ -48,7 +48,7 @@ const Products = () => {
     <motion.div
     initial={{opacity : 0}}
     animate={{opacity : "100%"}}
-    exit={{opacity : 0}}  className='flex flex-col items-center justify-center z-[-1] pt-20'>
+    exit={{opacity : 0}}  className='flex flex-col items-center justify-center z-[-1] pt-20 bg-white'>
                   { detail && <Detail detailProduct={detailProduct} handleToggle={handleToggle} />}
         <div className='flex items-center justify-center my-10'>
           <div className='flex items-center w-72 md:w-96  rounded-3xl shadow-lg border bg-white gap-2 '>

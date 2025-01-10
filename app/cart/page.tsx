@@ -31,7 +31,7 @@ const Page = () => {
 
   if (cartItems.length === 0) {
     return (
-      <div className='flex flex-col gap-5 items-center justify-center min-h-screen'>
+      <div className='flex flex-col gap-5 items-center justify-center min-h-screen bg-white'>
         <Image src="/empty-cart.png" alt='not_found' width={100} height={100} />
         <h1 className='text-4xl font-mono font-light'>Cart is Empty</h1>
         <Link href="/" className='px-2 py-1 shadow-lg hover:scale-75 text-md font-serif duration-300 bg-orange-500 rounded-lg text-white'>
@@ -42,7 +42,7 @@ const Page = () => {
   }
 
   return (
-    <div className='flex items-center min-h-screen flex-col pt-20'>
+    <div className='flex items-center min-h-screen flex-col pt-20 bg-white'>
       <div className='grid grid-cols-2 md:grid-cols-5 lg:grid-cols-5 gap-1 md:gap-6 p-2 mx-3 md:mx-10'>
         {cartItems.map((item: CartProduct, index: number) => (
           <div key={index} className='flex flex-col items-center justify-between p-2 shadow mx-3 my-1 bg-black/5 text-center gap-3 rounded'>
